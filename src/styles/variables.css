@@ -1,0 +1,13 @@
+:root {
+  /* colors */
+  --white-cl: #ffffff;
+  --main-bg-cl: #f7f7f7;
+  --gray-cl: #f2f4f7;
+  --yellow-cl: #ffc531;
+  --red-cl: #e44848;
+  --accent-red-cl: #d84343;
+  --dark-grey-cl: #475467;
+  --main-black-cl: #101828;
+  /*animation*/
+  --animation-cubicBezier: 0.3s cubic-bezier(0.7, 0.98, 0.86, 0.98);
+}
