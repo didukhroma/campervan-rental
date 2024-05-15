@@ -1,12 +1,15 @@
 import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import { Icon } from '../Icon/Icon';
 
 export const Header = () => {
   return (
     <>
       <header>
         <nav>
-          <NavLink to="/">Logo</NavLink>
+          <NavLink to="/">
+            <Icon id="icon-logo" width="80" height="80" />
+          </NavLink>
           <ul>
             <li>
               <NavLink to="/">Home</NavLink>
