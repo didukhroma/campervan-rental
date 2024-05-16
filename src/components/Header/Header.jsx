@@ -23,8 +23,8 @@ export const Header = () => {
           </ul>
         </nav>
       </header>
-      <Suspense>
-        <Outlet></Outlet>
+      <Suspense fallback={null}>
+        <Outlet />
       </Suspense>
     </>
   );
