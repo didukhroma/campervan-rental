@@ -1,0 +1,10 @@
+.button {
+  display: flex;
+  padding: 16px 40px;
+  min-width: 166px;
+  border-radius: 200px;
+  color: var(--white-cl);
+  background-color: var(--red-cl);
+  font-weight: 500;
+  letter-spacing: -0.08px;
+}
