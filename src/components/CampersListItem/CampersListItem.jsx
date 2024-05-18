@@ -3,7 +3,19 @@ import styles from './CampersListItem.module.css';
 
 export const CampersListItem = props => {
   console.log(props);
-  const { _id: id, name, price, rating, img, description, adults } = props;
+  const {
+    _id: id,
+    name,
+    price,
+    rating,
+    gallery,
+    description,
+    adults,
+    transmission,
+    engine,
+    details,
+    beds,
+  } = props;
 
   const handleClickShowMore = () => console.log(id);
 
@@ -13,7 +25,12 @@ export const CampersListItem = props => {
     <li className={styles.item}>
       {/* wrapper image */}
       <div className={styles.imgWrapper}>
-        <img className={styles.img} src={img} alt={name} loading="lazy" />
+        <img
+          className={styles.img}
+          src={gallery[0]}
+          alt={name}
+          loading="lazy"
+        />
       </div>
       {/* thumb */}
       <div className={styles.thumb}>
@@ -38,9 +55,19 @@ export const CampersListItem = props => {
         {/* description */}
         <p className={styles.description}>{description}</p>
 
-        <p>categories</p>
-        <Details adults={adults} />
-        <Button text="Show more" cbOnClick={handleClickShowMore} />
+        <Details
+          adults={adults}
+          automatic={transmission}
+          petrol={engine}
+          kitchen={details.kitchen}
+          beds={details.beds}
+          ac={details.ac}
+        />
+        <Button
+          text="Show more"
+          cbOnClick={handleClickShowMore}
+          bgColor="red"
+        />
       </div>
     </li>
   );

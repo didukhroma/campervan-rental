@@ -9,6 +9,7 @@
   --dark-grey-cl: #475467;
   --main-black-cl: #101828;
   --border-color: rgba(16, 24, 40, 0.2);
+  --button-border-color: rgba(71, 84, 103, 0.2);
   /*animation*/
   --animation-cubicBezier: 0.3s cubic-bezier(0.7, 0.98, 0.86, 0.98);
 }

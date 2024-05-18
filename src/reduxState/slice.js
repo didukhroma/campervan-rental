@@ -21,6 +21,11 @@ const handleRejected = state => {
 const campersSlice = createSlice({
   name: 'campers',
   initialState: { campersList: [], page: 1, isLoading: false, error: null },
+  reducers: {
+    nextPage(state) {
+      state.page++;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchCampers.fulfilled, (state, action) => {
@@ -40,6 +45,8 @@ const campersSlice = createSlice({
 });
 
 export const campersReducer = campersSlice.reducer;
+
+export const { nextPage } = campersSlice.actions;
 
 export const { selectCampersList, selectPage, selectIsLoading, selectError } =
   campersSlice.selectors;

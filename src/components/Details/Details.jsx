@@ -1,12 +1,12 @@
-import { DetailsItem } from '../DetailsItem/DetailsItem';
+import { DetailsItem } from '../';
+import styles from './Details.module.css';
 
-export const Details = details => {
-  console.log(Object.keys(details));
-  console.log(details);
+export const Details = props => {
+  const data = Object.keys(props);
   return (
-    <ul>
-      {details.map(el => (
-        <DetailsItem key={el} />
+    <ul className={styles.list}>
+      {data.map(el => (
+        <DetailsItem key={el} name={el} value={props[el]} />
       ))}
     </ul>
   );

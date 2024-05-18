@@ -2,9 +2,27 @@
   display: flex;
   padding: 16px 40px;
   min-width: 166px;
+
+  border: 1px solid var(--button-border-color);
   border-radius: 200px;
-  color: var(--white-cl);
-  background-color: var(--red-cl);
+
+  background-color: transparent;
+
   font-weight: 500;
   letter-spacing: -0.08px;
+
+  transition: color var(--animation-cubicBezier),
+    background-color var(--animation-cubicBezier);
+}
+
+.buttonAccent {
+  border: 1px solid var(--red-cl);
+  color: var(--white-cl);
+  background-color: var(--red-cl);
+}
+
+.button:hover,
+.button:focus {
+  color: var(--white-cl);
+  background-color: var(--accent-red-cl);
 }
