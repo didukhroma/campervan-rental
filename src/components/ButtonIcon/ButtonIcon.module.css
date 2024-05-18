@@ -1,0 +1,19 @@
+.favorites {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon {
+  fill: var(--white-cl);
+  stroke: var(--main-black-cl);
+
+  transition: stroke var(--animation-cubicBezier);
+}
+.icon:hover {
+  stroke: var(--red-cl);
+}
+
+.iconAccent {
+  fill: var(--red-cl);
+  stroke: var(--red-cl);
+}

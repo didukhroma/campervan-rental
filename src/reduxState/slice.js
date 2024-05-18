@@ -5,6 +5,7 @@ import {
   isRejected,
 } from '@reduxjs/toolkit';
 import { fetchCampers } from './operations';
+import { prepareData } from '../helpers/prepareData';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -20,7 +21,12 @@ const handleRejected = state => {
 
 const campersSlice = createSlice({
   name: 'campers',
-  initialState: { campersList: [], page: 1, isLoading: false, error: null },
+  initialState: {
+    campersList: [],
+    page: 1,
+    isLoading: false,
+    error: null,
+  },
   reducers: {
     nextPage(state) {
       state.page++;
@@ -28,9 +34,9 @@ const campersSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchCampers.fulfilled, (state, action) => {
+      .addCase(fetchCampers.fulfilled, (state, { payload }) => {
         if (state.campersList.length === state.page * 4) return;
-        state.campersList.push(...action.payload);
+        state.campersList.push(...prepareData(payload));
       })
       .addMatcher(isPending(fetchCampers), handlePending)
       .addMatcher(isFulfilled(fetchCampers), handleFulfilled)
@@ -38,6 +44,7 @@ const campersSlice = createSlice({
   },
   selectors: {
     selectCampersList: state => state.campersList,
+    selectCampersListLength: state => state.campersList.length,
     selectPage: state => state.page,
     selectIsLoading: state => state.isLoading,
     selectError: state => state.error,
@@ -48,5 +55,10 @@ export const campersReducer = campersSlice.reducer;
 
 export const { nextPage } = campersSlice.actions;
 
-export const { selectCampersList, selectPage, selectIsLoading, selectError } =
-  campersSlice.selectors;
+export const {
+  selectCampersList,
+  selectPage,
+  selectIsLoading,
+  selectError,
+  selectCampersListLength,
+} = campersSlice.selectors;

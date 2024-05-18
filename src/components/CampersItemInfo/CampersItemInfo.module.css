@@ -1,0 +1,30 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.titleWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.title {
+  margin-right: auto;
+
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+.price {
+  margin-right: 11px;
+}
+
+.locationWrapper {
+  display: flex;
+  gap: 16px;
+}

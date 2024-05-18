@@ -9,65 +9,17 @@
 
   background-color: var(--white-cl);
 }
-.imgWrapper {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  flex-shrink: 0;
 
-  width: 290px;
-  height: 310px;
-
-  border-radius: 10px;
-
-  background-image: url(../../images/placeholderImage.jpg);
-
-  overflow-x: hidden;
-}
-.img {
-  height: 310px;
-}
 .thumb {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   flex-grow: 1;
   max-width: 525px;
 }
-.titleWrapper {
-  display: flex;
-
-  margin-bottom: 8px;
-
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1.25;
-}
-
-.title {
-  margin-right: auto;
-
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-}
-.price {
-  margin-right: 11px;
-}
-
-.favorites {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.icon {
-  fill: var(--white-cl);
-  stroke: var(--main-black-cl);
-}
-.icon:hover {
-  stroke: var(--red-cl);
-}
-.locationWrapper {
-}
 
 .description {
+  color: var(--dark-grey-cl);
   white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis;

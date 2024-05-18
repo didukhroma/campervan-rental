@@ -1,7 +1,7 @@
-import { Icon } from '../';
-import styles from './DetailsItem.module.css';
+import { Icon } from '..';
+import styles from './CategoriesItem.module.css';
 
-export const DetailsItem = ({ name, value }) => {
+export const CategoriesItem = ({ name, value }) => {
   const upperCaseWords = ['automatic', 'petrol', 'kitchen'];
 
   const text =

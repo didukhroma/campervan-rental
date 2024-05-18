@@ -2,6 +2,7 @@
   display: flex;
   padding: 16px 40px;
   min-width: 166px;
+  max-width: min-content;
 
   border: 1px solid var(--button-border-color);
   border-radius: 200px;
@@ -12,17 +13,23 @@
   letter-spacing: -0.08px;
 
   transition: color var(--animation-cubicBezier),
-    background-color var(--animation-cubicBezier);
+    background-color var(--animation-cubicBezier),
+    border-color var(--animation-cubicBezier);
+}
+
+.button:hover,
+.button:focus,
+.button:focus:not(:focus-visible) {
+  border: 1px solid var(--red-cl);
 }
 
 .buttonAccent {
-  border: 1px solid var(--red-cl);
+  border: 1px solid transparent;
   color: var(--white-cl);
   background-color: var(--red-cl);
 }
 
-.button:hover,
-.button:focus {
-  color: var(--white-cl);
+.buttonAccent:hover,
+.buttonAccent:focus {
   background-color: var(--accent-red-cl);
 }

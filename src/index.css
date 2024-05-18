@@ -8,11 +8,13 @@ html {
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
+  color: var(--main-black-cl);
   background: var(--main-bg-cl);
   min-height: 100vh;
   font-size: 16px;
   line-height: 1.5;
   font-style: normal;
+  font-weight: 400;
 }
 
 h1,
@@ -48,5 +50,5 @@ a {
 
 img {
   display: block;
-  /* max-width: 100%; */
+  max-width: auto;
 }

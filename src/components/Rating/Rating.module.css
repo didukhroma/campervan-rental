@@ -1,0 +1,22 @@
+.rating {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+}
+
+.icon {
+  fill: var(--yellow-cl);
+}
+
+.text {
+  position: relative;
+}
+.text:after {
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  content: '';
+  width: 100%;
+  border-bottom: 1px solid var(--main-black-cl);
+}

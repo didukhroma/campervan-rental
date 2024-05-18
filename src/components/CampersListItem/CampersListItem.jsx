@@ -1,4 +1,12 @@
-import { Button, Details, Icon } from '../';
+import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  toggleFavorites,
+  selectFavorites,
+} from '../../reduxState/favorites/slice';
+
+import { Button, Categories, Picture, Description, CampersItemInfo } from '../';
+
 import styles from './CampersListItem.module.css';
 
 export const CampersListItem = props => {
@@ -8,54 +16,46 @@ export const CampersListItem = props => {
     name,
     price,
     rating,
+    reviews,
     gallery,
     description,
     adults,
     transmission,
     engine,
     details,
-    beds,
+    location,
   } = props;
+
+  const dispatch = useDispatch();
+
+  const favoritesList = useSelector(selectFavorites);
+
+  const isPresentInFavorites = favoritesList.find(el => el === id);
 
   const handleClickShowMore = () => console.log(id);
 
-  const handleClickAddToFavorites = () => console.log('add to favorites');
+  const handleClickAddToFavorites = () => dispatch(toggleFavorites(id));
 
   return (
     <li className={styles.item}>
-      {/* wrapper image */}
-      <div className={styles.imgWrapper}>
-        <img
-          className={styles.img}
-          src={gallery[0]}
-          alt={name}
-          loading="lazy"
-        />
-      </div>
+      <Picture name={name} src={gallery[0]} />
       {/* thumb */}
       <div className={styles.thumb}>
-        {/* title */}
-        <div className={styles.titleWrapper}>
-          <h3 className={styles.title}>{name}</h3>
-          <p className={styles.price}>&#x20AC;{price}</p>
-
-          <button
-            className={styles.favorites}
-            type="button"
-            onClick={handleClickAddToFavorites}
-          >
-            <Icon className={styles.icon} id="icon-heart" />
-          </button>
-        </div>
-        {/* location */}
-        <div className={styles.locationWrapper}>
-          <p>{rating}</p>
-          <p>Location</p>
-        </div>
+        <CampersItemInfo
+          name={name}
+          price={price}
+          iconId="icon-heart"
+          handleClick={handleClickAddToFavorites}
+          trigger={isPresentInFavorites}
+          rating={rating}
+          reviews={reviews.length}
+          city={location.city}
+          country={location.country}
+        />
         {/* description */}
-        <p className={styles.description}>{description}</p>
-
-        <Details
+        <Description className={styles.description} text={description} />
+        {/* categories */}
+        <Categories
           adults={adults}
           automatic={transmission}
           petrol={engine}
