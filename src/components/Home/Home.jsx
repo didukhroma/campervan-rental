@@ -1,3 +1,9 @@
+import { Section } from '../';
+
 export const Home = () => {
-  return <h2>Home page</h2>;
+  return (
+    <Section>
+      <h2>Home page</h2>
+    </Section>
+  );
 };

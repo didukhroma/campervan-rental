@@ -22,3 +22,6 @@ export * from './Modal/Modal';
 export * from './Gallery/Gallery';
 export * from './BookingForm/BookingForm';
 export * from './FormField/FormField';
+export * from './Error/Error';
+export * from './Section/Section';
+export * from './Loader/Loader';

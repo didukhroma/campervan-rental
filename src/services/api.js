@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-//Base setting for axios
 const baseURL = 'https://664395786c6a65658707aac7.mockapi.io/campers';
 
 export const fetchCampersByPage = async page => {

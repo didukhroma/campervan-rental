@@ -2,7 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useCallback, useEffect, useState } from 'react';
 
 import {
+  selectError,
   selectFavorites,
+  selectIsLoading,
   setError,
   startLoader,
   stopLoader,
@@ -12,15 +14,15 @@ import { fetchCamperInfoById } from '../../services/api';
 
 import { prepareSingleData } from '../../helpers/prepareData';
 
-import { CampersList } from '../';
-
-import styles from './Favorites.module.css';
+import { CampersList, Error, Loader, Section } from '../';
 
 export const Favorites = () => {
   const [campers, setCampers] = useState([]);
   const dispatch = useDispatch();
 
   const favorites = useSelector(selectFavorites);
+  const isLoading = useSelector(selectIsLoading);
+  const errorMessage = useSelector(selectError);
 
   const fetchCampersByIds = useCallback(async () => {
     if (!favorites.length) return;
@@ -51,11 +53,13 @@ export const Favorites = () => {
   }, [fetchCampersByIds]);
 
   return (
-    <section className={styles.section}>
+    <Section>
       {!!favorites.length && <CampersList data={campers} />}
       {!favorites.length && (
         <p>No campers here. Please add some campers to favorites.</p>
       )}
-    </section>
+      {isLoading && <Loader />}
+      {errorMessage && <Error message={errorMessage} />}
+    </Section>
   );
 };

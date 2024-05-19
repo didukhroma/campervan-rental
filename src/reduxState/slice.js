@@ -80,7 +80,6 @@ const campersSlice = createSlice({
   },
   selectors: {
     selectCampersList: state => state.campersList,
-    selectCampersListLength: state => state.campersList.length,
     selectPage: state => state.page,
     selectFavorites: state => state.favorites,
     selectIsLoading: state => state.isLoading,
@@ -109,7 +108,6 @@ export const {
   selectFavorites,
   selectIsLoading,
   selectError,
-  selectCampersListLength,
   selectIsModalOpen,
   selectModalId,
 } = campersSlice.selectors;

@@ -5,16 +5,20 @@ import { fetchCampers } from '../../reduxState/operations';
 import {
   nextPage,
   selectCampersList,
+  selectError,
+  selectIsLoading,
   selectPage,
 } from '../../reduxState/slice';
 
-import { Filters, CampersList } from '../';
+import { Filters, CampersList, Section, Loader, Error } from '../';
 
 export const Catalog = () => {
   const dispatch = useDispatch();
 
   const campersList = useSelector(selectCampersList);
   const page = useSelector(selectPage);
+  const isLoading = useSelector(selectIsLoading);
+  const errorMessage = useSelector(selectError);
 
   const handleClickLoadMore = () => dispatch(nextPage());
 
@@ -23,7 +27,7 @@ export const Catalog = () => {
   }, [dispatch, page]);
 
   return (
-    <>
+    <Section>
       <h2>Catalog page</h2>
       <Filters />
       <CampersList
@@ -31,6 +35,8 @@ export const Catalog = () => {
         cbOnClick={handleClickLoadMore}
         page={page}
       />
-    </>
+      {isLoading && <Loader />}
+      {errorMessage && <Error message={errorMessage} />}
+    </Section>
   );
 };
