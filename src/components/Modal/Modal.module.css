@@ -3,17 +3,37 @@
   left: 0;
   top: 0;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   width: 100vw;
   height: 100vh;
   background-color: var(--modal-overlay-color);
 }
 
 .wrapper {
+  position: relative;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, 100px);
   padding: 40px;
   max-width: 982px;
   background-color: var(--white-cl);
+  border-radius: 20px;
+}
+
+.thumb {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  margin-bottom: 44px;
+}
+
+.modalInfo {
+  gap: 0px;
+}
+
+.modalInfoTitleWrapper {
+  margin-bottom: 10px;
+}
+.modalInfo .modalInfoLocationWrapper {
+  margin-bottom: 16px;
 }

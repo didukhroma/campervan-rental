@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -14,49 +14,59 @@ import { fetchCamperInfoById } from '../../services/api';
 
 import { prepareSingleData } from '../../helpers/prepareData';
 
+import { CampersItemInfo, Gallery, Description, BookingForm } from '../';
+
 import styles from './Modal.module.css';
-import { CampersItemInfo } from '../CampersItemInfo/CampersItemInfo';
-import { Gallery } from '../Gallery/Gallery';
-import { Description } from '../Description/Description';
-import { BookingForm } from '../BookingForm/BookingForm';
 
 export const Modal = () => {
-  const isModalOpen = useSelector(selectIsModalOpen);
   const dispatch = useDispatch();
   const overlayRef = useRef();
 
   const [data, setData] = useState(null);
 
+  const isModalOpen = useSelector(selectIsModalOpen);
   const camperId = useSelector(selectModalId);
+
+  const closeModalAndClearState = useCallback(() => {
+    dispatch(closeModal());
+    setData(null);
+  }, [dispatch]);
+
+  const handlePressEscape = useCallback(
+    ({ key }) => {
+      if (key !== 'Escape') return;
+      closeModalAndClearState();
+    },
+    [closeModalAndClearState]
+  );
 
   const handleClick = e => {
     if (e.target !== overlayRef.current) return;
-    dispatch(closeModal());
+    closeModalAndClearState();
   };
 
   const handleClickClose = () => {
-    dispatch(closeModal());
+    closeModalAndClearState();
   };
 
-  useEffect(() => {
-    const handlePressEscape = ({ key }) => {
-      key === 'Escape' && dispatch(closeModal());
-    };
-
-    const fetchDataById = async id => {
+  const fetchDataById = useCallback(
+    async id => {
       try {
         dispatch(startLoader());
+        dispatch(setError(null));
         const data = await fetchCamperInfoById(id);
         const preparedData = prepareSingleData(data);
         setData(preparedData);
       } catch (error) {
         dispatch(setError(error.message));
-        dispatch(stopLoader());
       } finally {
         dispatch(stopLoader());
       }
-    };
+    },
+    [dispatch]
+  );
 
+  useEffect(() => {
     if (!camperId) return;
 
     fetchDataById(camperId);
@@ -66,27 +76,39 @@ export const Modal = () => {
     return () => {
       window.removeEventListener('keydown', handlePressEscape);
     };
-  }, [dispatch, camperId]);
+  }, [
+    dispatch,
+    camperId,
+    closeModalAndClearState,
+    handlePressEscape,
+    fetchDataById,
+  ]);
 
   return (
     <>
       {isModalOpen && data && (
         <div className={styles.overlay} onClick={handleClick} ref={overlayRef}>
           <div className={styles.wrapper}>
-            <CampersItemInfo
-              name={data.name}
-              price={data.price}
-              iconId="icon-close"
-              width="32"
-              height="32"
-              rating={data.rating}
-              reviews={data.reviews.length}
-              city={data.location.city}
-              country={data.location.country}
-              handleClick={handleClickClose}
-            />
-            <Gallery name={data.name} data={data.gallery} />
-            <Description text={data.description} />
+            <div className={styles.thumb}>
+              <CampersItemInfo
+                name={data.name}
+                price={data.price}
+                iconId="icon-close"
+                width="32"
+                height="32"
+                rating={data.rating}
+                reviews={data.reviews.length}
+                city={data.location.city}
+                country={data.location.country}
+                handleClick={handleClickClose}
+                position="after"
+                infoStyles={styles.modalInfo}
+                titleWrapperStyles={styles.modalInfoTitleWrapper}
+                locationWrapperStyles={styles.modalInfoLocationWrapper}
+              />
+              <Gallery name={data.name} data={data.gallery} />
+              <Description text={data.description} />
+            </div>
             <BookingForm />
           </div>
         </div>

@@ -1,9 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  toggleFavorites,
-  selectFavorites,
-} from '../../reduxState/favorites/slice';
+import { toggleFavorites, selectFavorites } from '../../reduxState/slice';
 import { openModal } from '../../reduxState/slice';
 
 import { Button, Categories, Picture, Description, CampersItemInfo } from '../';
@@ -51,6 +48,7 @@ export const CampersListItem = props => {
           reviews={reviews.length}
           city={location.city}
           country={location.country}
+          position="before"
         />
         {/* description */}
         <Description text={description} className={styles.description} />

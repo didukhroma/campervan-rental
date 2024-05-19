@@ -25,6 +25,7 @@ const campersSlice = createSlice({
   initialState: {
     campersList: [],
     page: 1,
+    favorites: [],
     isLoading: false,
     error: null,
     isModalOpen: false,
@@ -34,11 +35,23 @@ const campersSlice = createSlice({
     nextPage(state) {
       state.page++;
     },
+    toggleFavorites(state, { payload }) {
+      !state.favorites.includes(payload)
+        ? state.favorites.push(payload)
+        : state.favorites.splice(
+            state.favorites.findIndex(el => el === payload),
+            1
+          );
+    },
     openModal(state, { payload }) {
+      const rootRef = document.getElementById('root');
+      rootRef.style.position = 'fixed';
       state.isModalOpen = true;
       state.modalId = payload;
     },
     closeModal(state) {
+      const rootRef = document.getElementById('root');
+      rootRef.style.position = 'relative';
       state.isModalOpen = false;
       state.modalId = null;
     },
@@ -69,6 +82,7 @@ const campersSlice = createSlice({
     selectCampersList: state => state.campersList,
     selectCampersListLength: state => state.campersList.length,
     selectPage: state => state.page,
+    selectFavorites: state => state.favorites,
     selectIsLoading: state => state.isLoading,
     selectError: state => state.error,
     selectIsModalOpen: state => state.isModalOpen,
@@ -80,6 +94,7 @@ export const campersReducer = campersSlice.reducer;
 
 export const {
   nextPage,
+  toggleFavorites,
   openModal,
   closeModal,
   startLoader,
@@ -91,6 +106,7 @@ export const {
 export const {
   selectCampersList,
   selectPage,
+  selectFavorites,
   selectIsLoading,
   selectError,
   selectCampersListLength,

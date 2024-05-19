@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { ButtonIcon, Location, Rating } from '../';
 import styles from './CampersItemInfo.module.css';
 
@@ -13,12 +14,18 @@ export const CampersItemInfo = ({
   country,
   width,
   height,
+  position,
+  infoStyles,
+  titleWrapperStyles,
+  locationWrapperStyles,
 }) => {
   return (
-    <div className={styles.info}>
-      <div className={styles.titleWrapper}>
+    <div className={clsx(styles.info, infoStyles)}>
+      <div className={clsx(styles.titleWrapper, titleWrapperStyles)}>
         <h3 className={styles.title}>{name}</h3>
-        <p className={styles.price}>&#x20AC;{price}</p>
+        {position === 'before' && (
+          <p className={styles.price}>&#x20AC;{price}</p>
+        )}
         <ButtonIcon
           iconId={iconId}
           cbOnClick={handleClick}
@@ -27,10 +34,11 @@ export const CampersItemInfo = ({
           height={height}
         />
       </div>
-      <div className={styles.locationWrapper}>
+      <div className={clsx(styles.locationWrapper, locationWrapperStyles)}>
         <Rating rating={rating} reviews={reviews} />
         <Location city={city} country={country} />
       </div>
+      {position === 'after' && <p className={styles.price}>&#x20AC;{price}</p>}
     </div>
   );
 };
