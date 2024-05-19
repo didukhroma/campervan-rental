@@ -16,6 +16,8 @@ import { prepareSingleData } from '../../helpers/prepareData';
 
 import { CampersList, Error, Loader, Section } from '../';
 
+import styles from './Favorites.module.css'
+
 export const Favorites = () => {
   const [campers, setCampers] = useState([]);
   const dispatch = useDispatch();
@@ -40,7 +42,9 @@ export const Favorites = () => {
     } catch (error) {
       dispatch(setError(error.message));
     } finally {
-      dispatch(stopLoader());
+      setTimeout(() => {
+        dispatch(stopLoader());
+      }, 500);
     }
 
     return () => {
@@ -49,15 +53,20 @@ export const Favorites = () => {
   }, [dispatch, favorites]);
 
   useEffect(() => {
+    dispatch(setError(null));
     fetchCampersByIds();
-  }, [fetchCampersByIds]);
+  }, [fetchCampersByIds, dispatch]);
 
   return (
     <Section>
-      {!!favorites.length && <CampersList data={campers} />}
       {!favorites.length && (
-        <p>No campers here. Please add some campers to favorites.</p>
+        <p className={styles.text}>
+          No campers here. Please add some campers to favorites.
+        </p>
       )}
+
+      {!errorMessage && !!favorites.length && <CampersList data={campers} />}
+
       {isLoading && <Loader />}
       {errorMessage && <Error message={errorMessage} />}
     </Section>

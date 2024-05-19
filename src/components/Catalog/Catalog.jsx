@@ -28,13 +28,17 @@ export const Catalog = () => {
 
   return (
     <Section>
-      <h2>Catalog page</h2>
-      <Filters />
-      <CampersList
-        data={campersList}
-        cbOnClick={handleClickLoadMore}
-        page={page}
-      />
+      {!errorMessage && (
+        <>
+          <h2>Catalog page</h2>
+          <Filters />
+          <CampersList
+            data={campersList}
+            cbOnClick={handleClickLoadMore}
+            page={page}
+          />
+        </>
+      )}
       {isLoading && <Loader />}
       {errorMessage && <Error message={errorMessage} />}
     </Section>

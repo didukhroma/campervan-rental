@@ -60,7 +60,9 @@ export const Modal = () => {
       } catch (error) {
         dispatch(setError(error.message));
       } finally {
-        dispatch(stopLoader());
+        setTimeout(() => {
+          dispatch(stopLoader());
+        }, 500);
       }
     },
     [dispatch]
