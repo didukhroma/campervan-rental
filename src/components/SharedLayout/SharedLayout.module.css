@@ -1,0 +1,21 @@
+.container {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+}
+.list {
+  display: flex;
+  gap: 32px;
+}
+.link {
+  height: 100%;
+}
+
+.link:hover {
+  cursor: pointer;
+}

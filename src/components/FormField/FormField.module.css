@@ -1,0 +1,10 @@
+.input {
+  padding: 18px;
+  background-color: var(--main-bg-cl);
+  border-radius: 10px;
+  border: none;
+}
+
+.input::placeholder {
+  color: var(--placeholder-color);
+}

@@ -17,9 +17,7 @@
   flex-grow: 1;
   max-width: 525px;
 }
-
 .description {
-  color: var(--dark-grey-cl);
   white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis;

@@ -15,8 +15,9 @@ const handleFulfilled = state => {
   state.isLoading = false;
 };
 
-const handleRejected = state => {
+const handleRejected = (state, { payload }) => {
   state.isLoading = false;
+  state.error = payload;
 };
 
 const campersSlice = createSlice({
@@ -26,10 +27,32 @@ const campersSlice = createSlice({
     page: 1,
     isLoading: false,
     error: null,
+    isModalOpen: false,
+    modalId: null,
   },
   reducers: {
     nextPage(state) {
       state.page++;
+    },
+    openModal(state, { payload }) {
+      state.isModalOpen = true;
+      state.modalId = payload;
+    },
+    closeModal(state) {
+      state.isModalOpen = false;
+      state.modalId = null;
+    },
+    startLoader(state) {
+      state.isLoading = true;
+    },
+    stopLoader(state) {
+      state.isLoading = false;
+    },
+    setError(state, { payload }) {
+      state.error = payload;
+    },
+    clearError(state) {
+      state.error = null;
     },
   },
   extraReducers: builder => {
@@ -48,12 +71,22 @@ const campersSlice = createSlice({
     selectPage: state => state.page,
     selectIsLoading: state => state.isLoading,
     selectError: state => state.error,
+    selectIsModalOpen: state => state.isModalOpen,
+    selectModalId: state => state.modalId,
   },
 });
 
 export const campersReducer = campersSlice.reducer;
 
-export const { nextPage } = campersSlice.actions;
+export const {
+  nextPage,
+  openModal,
+  closeModal,
+  startLoader,
+  stopLoader,
+  setError,
+  clearError,
+} = campersSlice.actions;
 
 export const {
   selectCampersList,
@@ -61,4 +94,6 @@ export const {
   selectIsLoading,
   selectError,
   selectCampersListLength,
+  selectIsModalOpen,
+  selectModalId,
 } = campersSlice.selectors;

@@ -1,0 +1,19 @@
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--modal-overlay-color);
+}
+
+.wrapper {
+  padding: 40px;
+  max-width: 982px;
+  background-color: var(--white-cl);
+}

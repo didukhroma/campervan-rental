@@ -11,13 +11,21 @@ export const CampersItemInfo = ({
   reviews,
   city,
   country,
+  width,
+  height,
 }) => {
   return (
     <div className={styles.info}>
       <div className={styles.titleWrapper}>
         <h3 className={styles.title}>{name}</h3>
         <p className={styles.price}>&#x20AC;{price}</p>
-        <ButtonIcon iconId={iconId} cbOnClick={handleClick} trigger={trigger} />
+        <ButtonIcon
+          iconId={iconId}
+          cbOnClick={handleClick}
+          trigger={trigger}
+          width={width}
+          height={height}
+        />
       </div>
       <div className={styles.locationWrapper}>
         <Rating rating={rating} reviews={reviews} />

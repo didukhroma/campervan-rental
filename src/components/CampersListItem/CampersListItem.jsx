@@ -4,13 +4,13 @@ import {
   toggleFavorites,
   selectFavorites,
 } from '../../reduxState/favorites/slice';
+import { openModal } from '../../reduxState/slice';
 
 import { Button, Categories, Picture, Description, CampersItemInfo } from '../';
 
 import styles from './CampersListItem.module.css';
 
 export const CampersListItem = props => {
-  console.log(props);
   const {
     _id: id,
     name,
@@ -32,7 +32,7 @@ export const CampersListItem = props => {
 
   const isPresentInFavorites = favoritesList.find(el => el === id);
 
-  const handleClickShowMore = () => console.log(id);
+  const handleClickShowMore = () => dispatch(openModal(id));
 
   const handleClickAddToFavorites = () => dispatch(toggleFavorites(id));
 
@@ -53,7 +53,7 @@ export const CampersListItem = props => {
           country={location.country}
         />
         {/* description */}
-        <Description className={styles.description} text={description} />
+        <Description text={description} className={styles.description} />
         {/* categories */}
         <Categories
           adults={adults}

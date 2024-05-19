@@ -50,5 +50,8 @@ a {
 
 img {
   display: block;
-  max-width: auto;
+  height: auto;
+}
+#root {
+  position: relative;
 }

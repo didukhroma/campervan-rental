@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import clsx from 'clsx';
 import styles from './Button.module.css';
 
-export const Button = ({ text, cbOnClick, bgColor }) => {
+export const Button = ({ text, cbOnClick, bgColor, type = 'button' }) => {
   const btnRef = useRef();
 
   const handleClick = () => {
@@ -13,7 +13,7 @@ export const Button = ({ text, cbOnClick, bgColor }) => {
   return (
     <button
       className={clsx(styles.button, bgColor && styles.buttonAccent)}
-      type="button"
+      type={type}
       onClick={handleClick}
       ref={btnRef}
     >
