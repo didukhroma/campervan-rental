@@ -14,7 +14,7 @@ export const Button = ({ text, cbOnClick, bgColor, type = 'button' }) => {
     <button
       className={clsx(styles.button, bgColor && styles.buttonAccent)}
       type={type}
-      onClick={handleClick}
+      onClick={cbOnClick && handleClick}
       ref={btnRef}
     >
       {text}
