@@ -6,7 +6,7 @@ export const CampersList = ({ data, page, cbOnClick }) => {
     <div className={styles.wrapper}>
       <ul className={styles.list}>
         {data.map(el => (
-          <CampersListItem key={el._id} {...el} />
+          <CampersListItem key={`${el._id}-${Date.now()}`} {...el} />
         ))}
       </ul>
       {page && page * 4 === data.length && (

@@ -30,10 +30,14 @@ const campersSlice = createSlice({
     error: null,
     isModalOpen: false,
     modalId: null,
+    filter: '',
   },
   reducers: {
     nextPage(state) {
       state.page++;
+    },
+    setPage(state) {
+      state.page = 1;
     },
     toggleFavorites(state, { payload }) {
       !state.favorites.includes(payload)
@@ -67,6 +71,9 @@ const campersSlice = createSlice({
     clearError(state) {
       state.error = null;
     },
+    setFilter(state, { payload }) {
+      state.filter = payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -75,7 +82,6 @@ const campersSlice = createSlice({
         state.campersList.push(...prepareData(payload));
       })
       .addCase(fetchCampersByFilters.fulfilled, (state, { payload }) => {
-        // if (state.campersList.length === state.page * 4) return;
         state.campersList = [...prepareData(payload)];
       })
       .addMatcher(isPending(fetchCampers, fetchCampersByFilters), handlePending)
@@ -96,6 +102,7 @@ const campersSlice = createSlice({
     selectError: state => state.error,
     selectIsModalOpen: state => state.isModalOpen,
     selectModalId: state => state.modalId,
+    selectFilter: state => state.filter,
   },
 });
 
@@ -103,6 +110,7 @@ export const campersReducer = campersSlice.reducer;
 
 export const {
   nextPage,
+  setPage,
   toggleFavorites,
   openModal,
   closeModal,
@@ -110,6 +118,7 @@ export const {
   stopLoader,
   setError,
   clearError,
+  setFilter,
 } = campersSlice.actions;
 
 export const {
@@ -120,4 +129,5 @@ export const {
   selectError,
   selectIsModalOpen,
   selectModalId,
+  selectFilter,
 } = campersSlice.selectors;

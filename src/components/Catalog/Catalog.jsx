@@ -1,12 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchCampers } from '../../reduxState/operations';
+import {
+  fetchCampers,
+  fetchCampersByFilters,
+} from '../../reduxState/operations';
 import {
   clearError,
   nextPage,
   selectCampersList,
   selectError,
+  selectFilter,
   selectIsLoading,
   selectPage,
 } from '../../reduxState/slice';
@@ -22,13 +26,17 @@ export const Catalog = () => {
   const page = useSelector(selectPage);
   const isLoading = useSelector(selectIsLoading);
   const errorMessage = useSelector(selectError);
+  const filter = useSelector(selectFilter);
 
   const handleClickLoadMore = () => dispatch(nextPage());
 
   useEffect(() => {
     dispatch(clearError());
-    dispatch(fetchCampers(page));
-  }, [dispatch, page]);
+    if (filter.length > 0) dispatch(fetchCampersByFilters({ page, filter }));
+    else {
+      dispatch(fetchCampers(page));
+    }
+  }, [dispatch, page, filter]);
 
   return (
     <>

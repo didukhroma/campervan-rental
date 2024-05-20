@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { FormCheckbox, Button, LocationInput, FormRadioButton } from '../';
 import styles from './Filters.module.css';
 import { fetchCampersByFilters } from '../../reduxState/operations';
-import { selectPage } from '../../reduxState/slice';
+import { selectPage, setFilter, setPage } from '../../reduxState/slice';
 import { useState } from 'react';
 
 const vehicleEquipmentData = ['AC', 'Automatic', 'Kitchen', 'TV', 'Shower'];
@@ -24,7 +24,7 @@ export const Filters = () => {
   };
 
   const handleChangeLocation = e => {
-    setLocation(e.target.value);
+    setLocation(e.target.value.trim());
   };
 
   const handleChangeCheckbox = e => {
@@ -39,6 +39,8 @@ export const Filters = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    dispatch(setFilter(''));
+    dispatch(setPage());
 
     const locationStr =
       location.length === 0 ? '' : `location=${location.toLowerCase()}&`;
@@ -49,6 +51,8 @@ export const Filters = () => {
       .join('&');
 
     let searchQuery = locationStr + typeStr + equipmentStr;
+
+    dispatch(setFilter(searchQuery));
 
     dispatch(fetchCampersByFilters({ page, searchQuery }));
     setType('');
