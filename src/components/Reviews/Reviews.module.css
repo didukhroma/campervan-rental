@@ -1,0 +1,48 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 430px;
+}
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+
+  color: var(--red-cl);
+
+  border-radius: 50%;
+  background-color: var(--main-bg-cl);
+}
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.333;
+}
+.description {
+  color: var(--dark-grey-cl);
+}
+.rating {
+  display: flex;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.item {
+  /* background-clip: text;s */
+  background-color: red;
+}
+.ratingIcon {
+  fill: transparent;
+  background-clip: text;
+  /* overflow: hidden; */
+}

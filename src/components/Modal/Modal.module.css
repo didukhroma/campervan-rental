@@ -6,6 +6,7 @@
   width: 100vw;
   height: 100vh;
   background-color: var(--modal-overlay-color);
+  overflow-y: scroll;
 }
 
 .wrapper {
@@ -36,4 +37,9 @@
 }
 .modalInfo .modalInfoLocationWrapper {
   margin-bottom: 16px;
+}
+
+.info {
+  display: flex;
+  gap: 24px;
 }

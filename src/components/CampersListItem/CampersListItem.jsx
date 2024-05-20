@@ -41,7 +41,7 @@ export const CampersListItem = props => {
         <CampersItemInfo
           name={name}
           price={price}
-          iconId="icon-heart"
+          iconId="heart"
           handleClick={handleClickAddToFavorites}
           trigger={isPresentInFavorites}
           rating={rating}

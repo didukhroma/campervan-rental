@@ -14,7 +14,15 @@ import { fetchCamperInfoById } from '../../services/api';
 
 import { prepareSingleData } from '../../helpers/prepareData';
 
-import { CampersItemInfo, Gallery, Description, BookingForm } from '../';
+import {
+  CampersItemInfo,
+  Gallery,
+  Description,
+  BookingForm,
+  ModalTabs,
+  Features,
+  Reviews,
+} from '../';
 
 import styles from './Modal.module.css';
 
@@ -23,6 +31,7 @@ export const Modal = () => {
   const overlayRef = useRef();
 
   const [data, setData] = useState(null);
+  const [activeTab, setActiveTab] = useState(false);
 
   const isModalOpen = useSelector(selectIsModalOpen);
   const camperId = useSelector(selectModalId);
@@ -49,6 +58,12 @@ export const Modal = () => {
     closeModalAndClearState();
   };
 
+  const toggleActiveTab = e => {
+    if (e.target.textContent.includes('Feature') && !activeTab) return;
+    if (e.target.textContent.includes('Reviews') && activeTab) return;
+    setActiveTab(!activeTab);
+  };
+
   const fetchDataById = useCallback(
     async id => {
       try {
@@ -70,6 +85,7 @@ export const Modal = () => {
 
   useEffect(() => {
     if (!camperId) return;
+    setActiveTab(true);
 
     fetchDataById(camperId);
 
@@ -77,6 +93,7 @@ export const Modal = () => {
 
     return () => {
       window.removeEventListener('keydown', handlePressEscape);
+      setActiveTab(false);
     };
   }, [
     dispatch,
@@ -95,7 +112,7 @@ export const Modal = () => {
               <CampersItemInfo
                 name={data.name}
                 price={data.price}
-                iconId="icon-close"
+                iconId="close"
                 width="32"
                 height="32"
                 rating={data.rating}
@@ -111,7 +128,12 @@ export const Modal = () => {
               <Gallery name={data.name} data={data.gallery} />
               <Description text={data.description} />
             </div>
-            <BookingForm />
+            <ModalTabs handleClick={toggleActiveTab} activeTab={activeTab} />
+            <div className={styles.info}>
+              {!activeTab && <Features data={data} />}
+              {activeTab && <Reviews data={data.reviews} />}
+              <BookingForm />
+            </div>
           </div>
         </div>
       )}

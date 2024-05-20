@@ -1,0 +1,31 @@
+.titleWrapper {
+  display: flex;
+  align-items: flex-start;
+
+  margin-bottom: 24px;
+  height: 48px;
+  border-bottom: 1px solid var(--border-soft-color);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.333;
+}
+.item:not(:last-child) {
+  margin-bottom: 14px;
+}
+
+.text {
+  display: flex;
+  justify-content: space-between;
+}

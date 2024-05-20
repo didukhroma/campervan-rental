@@ -4,7 +4,7 @@ import styles from './Rating.module.css';
 export const Rating = ({ rating, reviews }) => {
   return (
     <p className={styles.rating}>
-      <Icon id="icon-rating-star" className={styles.icon} />
+      <Icon id="rating-star" className={styles.icon} />
       <span className={styles.text}>{`${rating} ${
         reviews && `(${reviews} Reviews)`
       } `}</span>

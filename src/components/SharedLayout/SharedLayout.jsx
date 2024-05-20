@@ -13,7 +13,7 @@ export const SharedLayout = () => {
         <Container>
           <nav className={styles.nav}>
             <NavLink className={clsx(styles.link, styles.logo)} to="/">
-              <Icon id="icon-logo" width="80" height="80" />
+              <Icon id="logo" width="80" height="80" />
             </NavLink>
             <ul className={styles.list}>
               <li>
