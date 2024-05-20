@@ -1,19 +1,47 @@
 import clsx from 'clsx';
 import styles from './FormField.module.css';
+import { currentDate } from '../../helpers/currentDate';
 
-export const FormField = ({ type, placeholder, required, children, name }) => {
+export const FormField = ({
+  type,
+  placeholder,
+  required,
+  children,
+  name,
+  minLength,
+  cbOnChange,
+  value,
+  rows,
+}) => {
   return (
     <label>
       {children && <span>{children}</span>}
       {children && <span>{name}</span>}
-      <input
-        className={clsx(styles.input, type === 'textarea' && styles.textArea)}
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        required={required}
-        minLength="2"
-      />
+      {type === 'textarea' ? (
+        <textarea
+          className={clsx(styles.input, styles.textArea)}
+          type={type}
+          name={name}
+          placeholder={placeholder}
+          minLength={minLength}
+          min={type === 'date' ? currentDate() : ''}
+          onChange={cbOnChange}
+          value={value}
+          rows={rows}
+        ></textarea>
+      ) : (
+        <input
+          className={styles.input}
+          type={type}
+          name={name}
+          placeholder={placeholder}
+          required={required}
+          minLength={minLength}
+          min={type === 'date' ? currentDate() : ''}
+          onChange={cbOnChange}
+          value={value}
+        />
+      )}
     </label>
   );
 };

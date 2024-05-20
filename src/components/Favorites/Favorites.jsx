@@ -14,9 +14,9 @@ import { fetchCamperInfoById } from '../../services/api';
 
 import { prepareSingleData } from '../../helpers/prepareData';
 
-import { CampersList, Error, Loader, Section } from '../';
+import { CampersList, Error, Loader } from '../';
 
-import styles from './Favorites.module.css'
+import styles from './Favorites.module.css';
 
 export const Favorites = () => {
   const [campers, setCampers] = useState([]);
@@ -58,7 +58,7 @@ export const Favorites = () => {
   }, [fetchCampersByIds, dispatch]);
 
   return (
-    <Section>
+    <>
       {!favorites.length && (
         <p className={styles.text}>
           No campers here. Please add some campers to favorites.
@@ -69,6 +69,6 @@ export const Favorites = () => {
 
       {isLoading && <Loader />}
       {errorMessage && <Error message={errorMessage} />}
-    </Section>
+    </>
   );
 };

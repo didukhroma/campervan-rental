@@ -10,7 +10,9 @@ import {
   selectPage,
 } from '../../reduxState/slice';
 
-import { Filters, CampersList, Section, Loader, Error } from '../';
+import { Filters, CampersList, Loader, Error } from '../';
+
+import styles from './Catalog.module.css';
 
 export const Catalog = () => {
   const dispatch = useDispatch();
@@ -27,20 +29,19 @@ export const Catalog = () => {
   }, [dispatch, page]);
 
   return (
-    <Section>
+    <>
       {!errorMessage && (
-        <>
-          <h2>Catalog page</h2>
+        <div className={styles.wrapper}>
           <Filters />
           <CampersList
             data={campersList}
             cbOnClick={handleClickLoadMore}
             page={page}
           />
-        </>
+        </div>
       )}
       {isLoading && <Loader />}
       {errorMessage && <Error message={errorMessage} />}
-    </Section>
+    </>
   );
 };

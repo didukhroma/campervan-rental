@@ -15,11 +15,6 @@ body {
   line-height: 1.5;
   font-style: normal;
   font-weight: 400;
-  -ms-overflow-style: none; /* IE and Edge */
-}
-
-body::-webkit-scrollbar {
-  display: none;
 }
 
 h1,

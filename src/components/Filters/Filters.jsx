@@ -1,8 +1,8 @@
 import { FormField, FormCheckbox } from '../';
-
+import styles from './Filtes.module.css';
 export const Filters = () => {
   return (
-    <form>
+    <form className={styles.form}>
       <h3>Location</h3>
 
       <FormField type="text" placeholder="City" />

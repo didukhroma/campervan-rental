@@ -11,7 +11,7 @@
 }
 
 .textArea {
+  width: 100%;
   min-height: 114px;
-  overflow-wrap: normal;
-  overflow-y: scroll;
+  resize: none;
 }

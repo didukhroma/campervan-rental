@@ -1,9 +1,8 @@
-import { Section } from '../';
 import styles from './Home.module.css';
 
 export const Home = () => {
   return (
-    <Section>
+    <>
       <h2 className={styles.title}>
         Campervan and Motorhome Rental in Ukraine
       </h2>
@@ -25,6 +24,6 @@ export const Home = () => {
         seamless and personalized online experience.
       </p>
       <h3 className={styles.title}>Enjoy your travels with our campers!!!</h3>
-    </Section>
+    </>
   );
 };

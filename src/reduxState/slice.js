@@ -44,14 +44,14 @@ const campersSlice = createSlice({
           );
     },
     openModal(state, { payload }) {
-      const rootRef = document.getElementById('root');
-      rootRef.style.position = 'fixed';
+      const rootRef = document.querySelector('body');
+      rootRef.style.overflow = 'hidden';
       state.isModalOpen = true;
       state.modalId = payload;
     },
     closeModal(state) {
-      const rootRef = document.getElementById('root');
-      rootRef.style.position = 'relative';
+      const rootRef = document.querySelector('body');
+      rootRef.style.overflow = 'scroll';
       state.isModalOpen = false;
       state.modalId = null;
     },
