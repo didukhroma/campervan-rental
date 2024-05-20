@@ -37,12 +37,14 @@
   align-items: center;
   gap: 16px;
 }
+
 .item {
-  /* background-clip: text;s */
-  background-color: red;
+  color: var(--main-bg-cl);
 }
+.itemActive {
+  color: var(--yellow-cl);
+}
+
 .ratingIcon {
-  fill: transparent;
-  background-clip: text;
-  /* overflow: hidden; */
+  fill: currentColor;
 }

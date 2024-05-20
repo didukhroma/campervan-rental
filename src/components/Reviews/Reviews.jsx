@@ -1,10 +1,14 @@
+import clsx from 'clsx';
 import { Icon } from '../';
 import styles from './Reviews.module.css';
 
 export const Reviews = ({ data }) => {
   const rating = [];
+  const totalStars = 5;
 
-  for (let i = 1; i <= 5; i++) {
+  if (!data) return;
+
+  for (let i = 1; i <= totalStars; i++) {
     rating.push(<Icon id="rating-star" className={styles.ratingIcon} />);
   }
 
@@ -20,7 +24,13 @@ export const Reviews = ({ data }) => {
                 <h3 className={styles.title}>{reviewer_name}</h3>
                 <ul className={styles.rating}>
                   {rating.map((el, idx) => (
-                    <li key={`${reviewer_name}-${idx}`} className={styles.item}>
+                    <li
+                      key={`${reviewer_name}-${idx}`}
+                      className={clsx(
+                        styles.item,
+                        reviewer_rating.toFixed() > idx && styles.itemActive
+                      )}
+                    >
                       {el}
                     </li>
                   ))}

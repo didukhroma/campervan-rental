@@ -85,7 +85,6 @@ export const Modal = () => {
 
   useEffect(() => {
     if (!camperId) return;
-    setActiveTab(true);
 
     fetchDataById(camperId);
 
