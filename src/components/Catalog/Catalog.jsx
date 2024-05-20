@@ -1,10 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  fetchCampers,
-  fetchCampersByFilters,
-} from '../../reduxState/operations';
+import { fetchCampers } from '../../reduxState/operations';
 import {
   clearError,
   nextPage,
@@ -18,6 +15,7 @@ import {
 import { Filters, CampersList, Loader, Error } from '../';
 
 import styles from './Catalog.module.css';
+import { filteredCampers } from '../../helpers/filteredCampers';
 
 export const Catalog = () => {
   const dispatch = useDispatch();
@@ -28,14 +26,14 @@ export const Catalog = () => {
   const errorMessage = useSelector(selectError);
   const filter = useSelector(selectFilter);
 
+  const filteredCampersList = filteredCampers(campersList, filter);
+
   const handleClickLoadMore = () => dispatch(nextPage());
 
   useEffect(() => {
     dispatch(clearError());
-    if (filter.length > 0) dispatch(fetchCampersByFilters({ page, filter }));
-    else {
-      dispatch(fetchCampers(page));
-    }
+
+    dispatch(fetchCampers(page));
   }, [dispatch, page, filter]);
 
   return (
@@ -43,11 +41,17 @@ export const Catalog = () => {
       {!errorMessage && (
         <div className={styles.wrapper}>
           <Filters />
-          <CampersList
-            data={campersList}
-            cbOnClick={handleClickLoadMore}
-            page={page}
-          />
+          {filteredCampersList.length !== 0 ? (
+            <CampersList
+              data={filteredCampersList}
+              cbOnClick={handleClickLoadMore}
+              page={page}
+            />
+          ) : (
+            <div className={styles.textWrapper}>
+              <p className={styles.text}>Please change search parameters</p>
+            </div>
+          )}
         </div>
       )}
       {isLoading && <Loader />}

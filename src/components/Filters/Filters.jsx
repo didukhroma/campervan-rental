@@ -1,63 +1,48 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import { FormCheckbox, Button, LocationInput, FormRadioButton } from '../';
 import styles from './Filters.module.css';
-import { fetchCampersByFilters } from '../../reduxState/operations';
-import { selectPage, setFilter, setPage } from '../../reduxState/slice';
+
+import { setFilter as setNewFilter } from '../../reduxState/slice';
 import { useState } from 'react';
 
 const vehicleEquipmentData = ['AC', 'Automatic', 'Kitchen', 'TV', 'Shower'];
 
 export const Filters = () => {
-  const [type, setType] = useState('');
-  const [location, setLocation] = useState('');
-  const [equipment, setEquipment] = useState({
-    ac: false,
-    automatic: false,
-    kitchen: false,
-    tv: false,
-    shower: false,
+  const [filter, setFilter] = useState({
+    location: '',
+    details: {
+      automatic: false,
+      kitchen: false,
+      tv: false,
+      shower: false,
+      ac: false,
+    },
+    type: '',
   });
 
   const handleChangeType = type => {
-    setType(type);
+    setFilter(prev => ({ ...prev, type }));
   };
 
   const handleChangeLocation = e => {
-    setLocation(e.target.value.trim());
+    setFilter(prev => ({ ...prev, location: e.target.value.trim() }));
   };
 
   const handleChangeCheckbox = e => {
     const equipmentName = e.target.name.toLowerCase();
-
-    setEquipment(prev => ({ ...prev, [equipmentName]: e.target.checked }));
+    setFilter(prev => ({
+      ...prev,
+      details: { ...prev.details, [equipmentName]: e.target.checked },
+    }));
   };
 
   const dispatch = useDispatch();
 
-  const page = useSelector(selectPage);
-
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(setFilter(''));
-    dispatch(setPage());
 
-    const locationStr =
-      location.length === 0 ? '' : `location=${location.toLowerCase()}&`;
-
-    const typeStr = type.length === 0 ? '' : `form=${type}&`;
-    const equipmentStr = Object.keys(equipment)
-      .filter(el => equipment[el])
-      .join('&');
-
-    let searchQuery = locationStr + typeStr + equipmentStr;
-
-    dispatch(setFilter(searchQuery));
-
-    dispatch(fetchCampersByFilters({ page, searchQuery }));
-    setType('');
-    setLocation('');
-    setEquipment([]);
+    dispatch(setNewFilter(filter));
   };
   return (
     <form className={styles.form} onSubmit={handleSubmit}>

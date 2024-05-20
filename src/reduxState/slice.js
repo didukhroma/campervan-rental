@@ -4,7 +4,7 @@ import {
   isPending,
   isRejected,
 } from '@reduxjs/toolkit';
-import { fetchCampers, fetchCampersByFilters } from './operations';
+import { fetchCampers } from './operations';
 import { prepareData } from '../helpers/prepareData';
 
 const handlePending = state => {
@@ -30,14 +30,11 @@ const campersSlice = createSlice({
     error: null,
     isModalOpen: false,
     modalId: null,
-    filter: '',
+    filter: null,
   },
   reducers: {
     nextPage(state) {
       state.page++;
-    },
-    setPage(state) {
-      state.page = 1;
     },
     toggleFavorites(state, { payload }) {
       !state.favorites.includes(payload)
@@ -81,18 +78,10 @@ const campersSlice = createSlice({
         if (state.campersList.length === state.page * 4) return;
         state.campersList.push(...prepareData(payload));
       })
-      .addCase(fetchCampersByFilters.fulfilled, (state, { payload }) => {
-        state.campersList = [...prepareData(payload)];
-      })
-      .addMatcher(isPending(fetchCampers, fetchCampersByFilters), handlePending)
-      .addMatcher(
-        isFulfilled(fetchCampers, fetchCampersByFilters),
-        handleFulfilled
-      )
-      .addMatcher(
-        isRejected(fetchCampers, fetchCampersByFilters),
-        handleRejected
-      );
+
+      .addMatcher(isPending(fetchCampers), handlePending)
+      .addMatcher(isFulfilled(fetchCampers), handleFulfilled)
+      .addMatcher(isRejected(fetchCampers), handleRejected);
   },
   selectors: {
     selectCampersList: state => state.campersList,
@@ -110,7 +99,6 @@ export const campersReducer = campersSlice.reducer;
 
 export const {
   nextPage,
-  setPage,
   toggleFavorites,
   openModal,
   closeModal,
