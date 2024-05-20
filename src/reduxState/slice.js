@@ -4,7 +4,7 @@ import {
   isPending,
   isRejected,
 } from '@reduxjs/toolkit';
-import { fetchCampers } from './operations';
+import { fetchCampers, fetchCampersByFilters } from './operations';
 import { prepareData } from '../helpers/prepareData';
 
 const handlePending = state => {
@@ -74,9 +74,19 @@ const campersSlice = createSlice({
         if (state.campersList.length === state.page * 4) return;
         state.campersList.push(...prepareData(payload));
       })
-      .addMatcher(isPending(fetchCampers), handlePending)
-      .addMatcher(isFulfilled(fetchCampers), handleFulfilled)
-      .addMatcher(isRejected(fetchCampers), handleRejected);
+      .addCase(fetchCampersByFilters.fulfilled, (state, { payload }) => {
+        // if (state.campersList.length === state.page * 4) return;
+        state.campersList = [...prepareData(payload)];
+      })
+      .addMatcher(isPending(fetchCampers, fetchCampersByFilters), handlePending)
+      .addMatcher(
+        isFulfilled(fetchCampers, fetchCampersByFilters),
+        handleFulfilled
+      )
+      .addMatcher(
+        isRejected(fetchCampers, fetchCampersByFilters),
+        handleRejected
+      );
   },
   selectors: {
     selectCampersList: state => state.campersList,

@@ -11,6 +11,13 @@ export const fetchCampersByPage = async page => {
   return data;
 };
 
+export const fetchCampersByFiltersQuery = async (page, filters) => {
+  const URL = `${baseURL}?${filters}&page=${page}&limit=4`;
+
+  const { data } = await axios.get(URL);
+  return data;
+};
+
 export const fetchCamperInfoById = async id => {
   const { data } = await axios.get(`${baseURL}/${id}`);
   return data;

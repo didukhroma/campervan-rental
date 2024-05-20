@@ -1,0 +1,26 @@
+.label {
+  position: relative;
+  overflow: hidden;
+}
+.label:has(input[type='text']:placeholder-shown) .icon {
+  stroke: var(--placeholder-color);
+}
+.iconWrapper {
+  position: absolute;
+  left: 18px;
+  top: 0;
+}
+.icon {
+  stroke: var(--main-black-cl);
+}
+.input {
+  width: 100%;
+  padding: 18px 18px 18px 44px;
+  background-color: var(--main-bg-cl);
+  border-radius: 10px;
+  border: none;
+}
+
+.input::placeholder {
+  color: var(--placeholder-color);
+}

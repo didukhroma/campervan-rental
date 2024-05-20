@@ -14,9 +14,9 @@ export const FormField = ({
   rows,
 }) => {
   return (
-    <label>
+    <label className={clsx(children && styles.label)}>
       {children && <span>{children}</span>}
-      {children && <span>{name}</span>}
+      {children && <span className={styles.text}>{name}</span>}
       {type === 'textarea' ? (
         <textarea
           className={clsx(styles.input, styles.textArea)}
@@ -31,7 +31,7 @@ export const FormField = ({
         ></textarea>
       ) : (
         <input
-          className={styles.input}
+          className={clsx(styles.input, children && styles.visuallyHidden)}
           type={type}
           name={name}
           placeholder={placeholder}

@@ -1,16 +1,15 @@
 import { FormField, Icon } from '../';
-
-export const FormCheckbox = ({
-  name,
-  options = ['ac', 'automatic', 'kitchen', 'tv', 'shower'],
-}) => {
+import styles from './FormCheckbox.module.css';
+export const FormCheckbox = ({ name, options, width, height, handleClick }) => {
   return (
-    <>
+    <ul className={styles.list}>
       {options.map(el => (
-        <FormField key={`${name}-${el}`} type="checkbox" name={name}>
-          <Icon id={el} />
-        </FormField>
+        <li key={`${name}-${el}`}>
+          <FormField type="checkbox" name={el} cbOnChange={handleClick}>
+            <Icon id={el.toLowerCase()} width={width} height={height} />
+          </FormField>
+        </li>
       ))}
-    </>
+    </ul>
   );
 };

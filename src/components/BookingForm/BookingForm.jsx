@@ -1,17 +1,14 @@
 import { useState } from 'react';
 import iziToast from 'izitoast';
-
 import { Button, FormField } from '../';
 
 import { currentDate } from '../../helpers/currentDate';
 
 import styles from './BookingForm.module.css';
-
 iziToast.settings({
   timeout: 3000,
   class: styles.notification,
 });
-
 const INITIAL_STATE = {
   name: '',
   email: '',
@@ -32,7 +29,6 @@ export const BookingForm = () => {
       title: 'Thank you!',
       message: 'Our team is contact with You soon.',
     });
-
     setData(INITIAL_STATE);
   };
 

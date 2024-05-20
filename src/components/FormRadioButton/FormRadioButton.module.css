@@ -1,35 +1,19 @@
-.input {
-  width: 100%;
-  padding: 18px;
-  background-color: var(--main-bg-cl);
-  border-radius: 10px;
+.fieldset {
   border: none;
-}
-
-.input::placeholder {
-  color: var(--placeholder-color);
-}
-
-.textArea {
-  width: 100%;
-  min-height: 114px;
-  resize: none;
-}
-
-.text {
-  font-weight: 500;
-  line-height: 1.25; /* 125% */
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
 }
 
 .label {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   gap: 8px;
 
   width: 112px;
-  height: 95px;
+  height: 105px;
 
   text-align: center;
 
@@ -45,10 +29,10 @@
   cursor: pointer;
 }
 
-.label:has(input[type='checkbox']:checked) {
+.label:has(input[type='radio']:checked) {
   border: 1px solid var(--red-cl);
 }
-.visuallyHidden {
+.input {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -57,4 +41,9 @@
   padding: 0;
   clip: rect(0, 0, 0, 0);
   overflow: hidden;
+}
+.text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
 }

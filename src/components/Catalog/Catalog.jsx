@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchCampers } from '../../reduxState/operations';
 import {
+  clearError,
   nextPage,
   selectCampersList,
   selectError,
@@ -25,6 +26,7 @@ export const Catalog = () => {
   const handleClickLoadMore = () => dispatch(nextPage());
 
   useEffect(() => {
+    dispatch(clearError());
     dispatch(fetchCampers(page));
   }, [dispatch, page]);
 
