@@ -24,7 +24,7 @@ export const CampersItemInfo = ({
       <div className={clsx(styles.titleWrapper, titleWrapperStyles)}>
         <h3 className={styles.title}>{name}</h3>
         {position === 'before' && (
-          <p className={styles.price}>&#x20AC;{price}</p>
+          <p className={styles.price}>&#x20AC;{String(price) + '.00'}</p>
         )}
         <ButtonIcon
           iconId={iconId}
@@ -38,7 +38,9 @@ export const CampersItemInfo = ({
         <Rating rating={rating} reviews={reviews} />
         <Location city={city} country={country} />
       </div>
-      {position === 'after' && <p className={styles.price}>&#x20AC;{price}</p>}
+      {position === 'after' && (
+        <p className={styles.price}>&#x20AC;{String(price) + '.00'}</p>
+      )}
     </div>
   );
 };

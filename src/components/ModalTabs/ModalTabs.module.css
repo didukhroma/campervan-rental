@@ -1,7 +1,7 @@
 .list {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 30px;
 
   margin-bottom: 44px;
   border-bottom: 1px solid var(--border-color);
@@ -21,8 +21,11 @@
 .active::after {
   position: absolute;
   left: 0;
-  bottom: -4px;
+  bottom: -5px;
   content: '';
   width: 100%;
   border: 5px solid var(--red-cl);
+}
+.reviews {
+  padding: 0 10px;
 }

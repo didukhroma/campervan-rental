@@ -15,7 +15,11 @@ export const ModalTabs = ({ activeTab, handleClick }) => {
       </li>
       <li>
         <button
-          className={clsx(styles.button, activeTab && styles.active)}
+          className={clsx(
+            styles.button,
+            styles.reviews,
+            activeTab && styles.active
+          )}
           type="button"
           onClick={handleClick}
         >
