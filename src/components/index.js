@@ -3,7 +3,6 @@ export * from './Home/Home';
 export * from './Catalog/Catalog';
 export * from './Favorites/Favorites';
 export * from './Container/Container';
-export * from './Router/Router';
 export * from './SharedLayout/SharedLayout';
 export * from './Icon/Icon';
 export * from './Button/Button';
