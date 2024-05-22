@@ -1,4 +1,4 @@
-import { Button, CampersListItem } from '../';
+import { Button, CampersListItem } from '..';
 import styles from './CampersList.module.css';
 
 export const CampersList = ({ data, page, cbOnClick }) => {

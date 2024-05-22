@@ -1,4 +1,4 @@
-import { Icon } from '../';
+import { Icon } from '..';
 
 import styles from './Location.module.css';
 

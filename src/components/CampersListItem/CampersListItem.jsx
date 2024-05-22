@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorites, selectFavorites } from '../../reduxState/slice';
 import { openModal } from '../../reduxState/slice';
 
-import { Button, Categories, Picture, Description, CampersItemInfo } from '../';
+import { Button, Categories, Picture, Description, CampersItemInfo } from '..';
 
 import styles from './CampersListItem.module.css';
 

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Icon } from '../';
+import { Icon } from '..';
 import styles from './Reviews.module.css';
 
 export const Reviews = ({ data }) => {

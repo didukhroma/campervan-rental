@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { SharedLayout } from '../';
+import { SharedLayout } from '..';
 
 const AsyncHomePage = lazy(() => import('../../pages/HomePage'));
 const AsyncCatalogPage = lazy(() => import('../../pages/CatalogPage'));

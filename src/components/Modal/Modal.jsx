@@ -22,7 +22,7 @@ import {
   ModalTabs,
   Features,
   Reviews,
-} from '../';
+} from '..';
 
 import styles from './Modal.module.css';
 

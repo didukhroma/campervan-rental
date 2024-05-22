@@ -1,4 +1,4 @@
-import { FormField, Icon } from '../';
+import { FormField, Icon } from '..';
 import styles from './FormCheckbox.module.css';
 export const FormCheckbox = ({ name, options, width, height, handleClick }) => {
   return (

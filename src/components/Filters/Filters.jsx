@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import clsx from 'clsx';
-import { FormCheckbox, Button, LocationInput, FormRadioButton } from '../';
+import { FormCheckbox, Button, LocationInput, FormRadioButton } from '..';
 import styles from './Filters.module.css';
 
 import { setFilter as setNewFilter } from '../../reduxState/slice';

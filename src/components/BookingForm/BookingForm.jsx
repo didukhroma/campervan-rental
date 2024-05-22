@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import iziToast from 'izitoast';
-import { Button, FormField } from '../';
+import { Button, FormField } from '..';
 
 import { currentDate } from '../../helpers/currentDate';
 

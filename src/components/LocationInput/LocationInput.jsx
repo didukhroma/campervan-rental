@@ -1,4 +1,4 @@
-import { Icon } from '../';
+import { Icon } from '..';
 import styles from './LocationInput.module.css';
 
 export const LocationInput = ({ handleChange }) => {

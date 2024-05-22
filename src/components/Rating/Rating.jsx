@@ -1,4 +1,4 @@
-import { Icon } from '../';
+import { Icon } from '..';
 import styles from './Rating.module.css';
 
 export const Rating = ({ rating, reviews }) => {

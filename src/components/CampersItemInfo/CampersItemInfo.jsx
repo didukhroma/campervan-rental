@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ButtonIcon, Location, Rating } from '../';
+import { ButtonIcon, Location, Rating } from '..';
 import styles from './CampersItemInfo.module.css';
 
 export const CampersItemInfo = ({

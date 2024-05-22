@@ -12,7 +12,7 @@ import {
   selectPage,
 } from '../../reduxState/slice';
 
-import { Filters, CampersList, Loader, Error } from '../';
+import { Filters, CampersList, Loader, Error } from '..';
 
 import styles from './Catalog.module.css';
 import { filteredCampers } from '../../helpers/filteredCampers';

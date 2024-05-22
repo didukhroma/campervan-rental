@@ -14,7 +14,7 @@ import { fetchCamperInfoById } from '../../services/api';
 
 import { prepareSingleData } from '../../helpers/prepareData';
 
-import { CampersList, Error, Loader } from '../';
+import { CampersList, Error, Loader } from '..';
 
 import styles from './Favorites.module.css';
 

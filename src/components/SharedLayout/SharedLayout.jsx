@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import clsx from 'clsx';
 
-import { Icon, Container, Modal, Section } from '../';
+import { Icon, Container, Modal, Section } from '..';
 
 import styles from './SharedLayout.module.css';
 

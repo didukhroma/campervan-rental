@@ -1,4 +1,4 @@
-import { Picture } from '../';
+import { Picture } from '..';
 
 import styles from './Gallery.module.css';
 
