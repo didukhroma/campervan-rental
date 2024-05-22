@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/69.26aef97a.chunk.js","mappings":"iKAIA,UAFoB,WAAH,OAASA,EAAAA,EAAAA,KAACC,EAAAA,GAAO,GAAI,C","sources":["pages/CatalogPage.jsx"],"sourcesContent":["import { Catalog } from '../components';\r\n\r\nconst CatalogPage = () => <Catalog />;\r\n\r\nexport default CatalogPage;\r\n"],"names":["_jsx","Catalog"],"sourceRoot":""}

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkcampervan_rental_site=self.webpackChunkcampervan_rental_site||[]).push([[983],{3983:function(e,n,a){a.r(n);var t=a(6750),r=a(3329);n.default=function(){return(0,r.jsx)(t.SK,{})}}}]);
+//# sourceMappingURL=983.cf4c8f51.chunk.js.map
